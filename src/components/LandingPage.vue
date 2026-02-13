@@ -11,6 +11,7 @@ import polo from '../assets/nina-pampa-polo.png';
 // Datos de los productos
 const whatsappNumber = ref('51900000000');
 const selectedProduct = ref(null);
+const selectedImage = ref(null);
 const machuPicchuImg = ref(null);
 const parallaxY = ref(0);
 const currentYear = new Date().getFullYear();
@@ -188,6 +189,14 @@ const openDetails = (product) => {
 
 const closeDetails = () => {
   selectedProduct.value = null;
+};
+
+const openImageModal = (image) => {
+  selectedImage.value = image;
+};
+
+const closeImageModal = () => {
+  selectedImage.value = null;
 };
 
 const faqs = ref([
@@ -526,7 +535,7 @@ onUnmounted(() => {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div v-for="item in merchItems" :key="item.id" class="group text-center">
             <div class="bg-stone-100 rounded-xl p-8 mb-4 transition-all duration-300 group-hover:bg-stone-200 group-hover:shadow-lg flex items-center justify-center h-64 relative">
-              <img v-if="item.image" :src="item.image" :alt="item.name" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
+              <img v-if="item.image" :src="item.image" :alt="item.name" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 cursor-pointer" @click="openImageModal(item.image)" />
               <div v-else class="text-8xl opacity-80 group-hover:scale-110 transition-transform duration-500">{{ item.icon }}</div>
               <div class="absolute bottom-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-stone-800 shadow-sm">{{ item.price }}</div>
             </div>
@@ -664,6 +673,16 @@ onUnmounted(() => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </a>
           </div-->
+      </div>
+    </div>
+
+    <!-- Modal de Imagen Ampliada (Merchandising) -->
+    <div v-if="selectedImage" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/90 backdrop-blur-sm transition-opacity animate-fade-in-page" @click.self="closeImageModal">
+      <div class="relative max-w-4xl w-full max-h-[90vh] flex justify-center">
+        <button @click="closeImageModal" class="absolute -top-12 right-0 text-white hover:text-orange-400 transition-colors p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <img :src="selectedImage" alt="Zoom Merchandising" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl animate-fade-in-up" />
       </div>
     </div>
   </div>
