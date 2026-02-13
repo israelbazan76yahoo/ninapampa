@@ -3,6 +3,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import logo from '../assets/nina-pampa-logo.png';
 import titulo from '../assets/nina-pampa-titulo-transp2.png';
 import machupichu from '../assets/nina-pampa-machupichu.png';
+import totebag from '../assets/nina-pampa-totebag.png';
+import taza from '../assets/nina-pampa-taza.png';
+import stickers from '../assets/nina-pampa-stickers.png';
+import polo from '../assets/nina-pampa-polo.png';
 
 // Datos de los productos
 const whatsappNumber = ref('51900000000');
@@ -152,10 +156,10 @@ const promotions = ref([
 ]);
 
 const merchItems = ref([
-  { id: 1, name: "Tote Bag Nina Pampa", price: "S/ 35.00", icon: "👜", description: "Lleva la magia contigo. Algodón 100% orgánico." },
-  { id: 2, name: "Taza Ceremonial", price: "S/ 25.00", icon: "☕", description: "Para tus infusiones sagradas. Cerámica artesanal." },
-  { id: 3, name: "Polo Espíritu Andino", price: "S/ 45.00", icon: "👕", description: "Diseños inspirados en la cosmovisión andina." },
-  { id: 4, name: "Set de Stickers", price: "S/ 10.00", icon: "🏷️", description: "Decora tu espacio con nuestros símbolos sagrados." }
+  { id: 1, name: "Tote Bag Nina Pampa", price: "S/ 35.00", image: totebag, description: "Lleva la magia contigo. Algodón 100% orgánico." },
+  { id: 2, name: "Taza Ceremonial", price: "S/ 25.00", image: taza, description: "Para tus infusiones sagradas. Cerámica artesanal." },
+  { id: 3, name: "Polo Espíritu Andino", price: "S/ 45.00", image: polo, description: "Diseños inspirados en la cosmovisión andina." },
+  { id: 4, name: "Set de Stickers", price: "S/ 10.00", image: stickers, description: "Decora tu espacio con nuestros símbolos sagrados." }
 ]);
 
 const scrollToPromos = () => {
@@ -522,7 +526,8 @@ onUnmounted(() => {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div v-for="item in merchItems" :key="item.id" class="group text-center">
             <div class="bg-stone-100 rounded-xl p-8 mb-4 transition-all duration-300 group-hover:bg-stone-200 group-hover:shadow-lg flex items-center justify-center h-64 relative">
-              <div class="text-8xl opacity-80 group-hover:scale-110 transition-transform duration-500">{{ item.icon }}</div>
+              <img v-if="item.image" :src="item.image" :alt="item.name" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
+              <div v-else class="text-8xl opacity-80 group-hover:scale-110 transition-transform duration-500">{{ item.icon }}</div>
               <div class="absolute bottom-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-stone-800 shadow-sm">{{ item.price }}</div>
             </div>
             <h3 class="text-xl font-cinzel font-bold text-stone-800 mb-2">{{ item.name }}</h3>
