@@ -1,11 +1,11 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import logo from '../assets/nina-pampa-logo.png';
-import titulo from '../assets/nina-pampa-titulo-transp2.png';
+import titulo from '../assets/nina-pampa-logo-transp2.png';
 import machupichu from '../assets/nina-pampa-machupichu.png';
 import totebag from '../assets/nina-pampa-totebag.png';
 import taza from '../assets/nina-pampa-taza.png';
-import stickers from '../assets/nina-pampa-stickers.png';
+import stickers from '../assets/nina-pampa-stickers2.png';
 import polo from '../assets/nina-pampa-polo.png';
 
 // Datos de los productos
@@ -183,6 +183,10 @@ const scrollToEssence = () => {
   document.getElementById('nuestra-historia').scrollIntoView({ behavior: 'smooth' });
 };
 
+const scrollToBenefits = () => {
+  document.getElementById('beneficios').scrollIntoView({ behavior: 'smooth' });
+};
+
 const openDetails = (product) => {
   selectedProduct.value = product;
 };
@@ -239,97 +243,116 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-stone-50 font-cormorant text-stone-900 font-medium overflow-x-hidden animate-fade-in-page text-lg">
+  <div class="min-h-screen bg-stone-50 font-raleway text-stone-900 font-medium overflow-x-hidden animate-fade-in-page text-lg">
     
     <!-- Navbar Flotante -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-stone-200">
-      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-end gap-4">
-          <img :src="logo" alt="Logo Nina Pampa" class="w-24 h-24 object-contain" />
-          <div class="text-center hidden md:block">
-            <img :src="titulo" alt="Nina Pampa" class="h-28 object-contain" loading="lazy" />
-          </div>
-        </div>
-        <div class="flex flex-col-reverse md:flex-row items-center gap-2 md:gap-6">
-          <button @click="scrollToPoints" class="text-stone-800 hover:text-orange-700 font-cinzel font-bold text-xs md:text-sm transition-colors">
-            Puntos de Venta
-          </button>
-          <a :href="`https://wa.me/${whatsappNumber}`" target="_blank" class="bg-orange-700 hover:bg-orange-800 text-white px-5 py-2 rounded-full text-sm font-cinzel font-bold transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Contáctenos
-          </a>
-        </div>
+    <nav class="fixed top-0 right-0 z-50 p-4 md:p-6 flex justify-end items-start pointer-events-none">
+      <div class="flex flex-col-reverse md:flex-row items-center gap-3 pointer-events-auto">
+        <button @click="scrollToPoints" class="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md text-stone-800 hover:text-orange-700 font-raleway font-semibold text-xs md:text-sm transition-all hover:scale-105 border border-stone-200/50">
+          Puntos de Venta
+        </button>
+        <a :href="`https://wa.me/${whatsappNumber}`" target="_blank" class="bg-orange-700 hover:bg-orange-800 text-white px-5 py-2 rounded-full text-sm font-raleway font-semibold transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 hover:scale-105">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Contáctenos
+        </a>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#fdfbf7] pt-24 pb-32">
+    <header class="relative min-h-screen flex items-start justify-center overflow-hidden bg-[#fdfbf7] pt-4 md:pt-12 pb-16 md:pb-24">
       <!-- Fondo dibujado a mano (SVG) -->
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <!-- Definición de Filtros -->
+        <svg width="0" height="0" class="absolute">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+            <feComponentTransfer>
+              <feFuncA type="linear" slope="0.15" />
+            </feComponentTransfer>
+            <feComposite operator="in" in2="SourceGraphic" />
+            <feComposite operator="over" in2="SourceGraphic" />
+          </filter>
+          <filter id="sunGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </svg>
+
         <!-- Sol -->
-        <svg class="absolute top-10 right-10 md:top-20 md:right-20 w-32 h-32 md:w-64 md:h-64 text-orange-200/50 animate-pendulum" viewBox="0 0 200 200" fill="currentColor">
+        <svg class="absolute top-10 right-10 md:top-20 md:right-20 w-32 h-32 md:w-64 md:h-64 text-[#e09f3e]/60 animate-pendulum" viewBox="0 0 200 200" fill="currentColor" filter="url(#sunGlow)">
           <path d="M100 20 C 150 20 180 50 180 100 C 180 150 150 180 100 180 C 50 180 20 150 20 100 C 20 50 50 20 100 20 Z" />
         </svg>
 
         <!-- Nubes -->
-        <svg class="absolute top-1/2 left-10 w-64 h-32 text-stone-300 animate-drift" viewBox="0 0 100 50" fill="currentColor">
+        <svg class="absolute top-20 left-1/4 w-48 h-24 text-sky-200/60 animate-drift" style="animation-duration: 45s;" viewBox="0 0 100 50" fill="currentColor">
            <path d="M10 30 Q 30 5 50 30 T 90 30 Q 100 45 80 45 H 20 Q 0 45 10 30 Z" />
         </svg>
-        <svg class="absolute top-2/3 right-1/4 w-96 h-48 text-stone-300/80 animate-drift-delayed" viewBox="0 0 100 50" fill="currentColor">
+        <svg class="absolute top-1/2 left-10 w-64 h-32 text-sky-200/80 animate-drift" viewBox="0 0 100 50" fill="currentColor">
+           <path d="M10 30 Q 30 5 50 30 T 90 30 Q 100 45 80 45 H 20 Q 0 45 10 30 Z" />
+        </svg>
+        <svg class="absolute top-1/3 right-10 w-56 h-28 text-sky-200/50 animate-drift-delayed" style="animation-delay: -15s;" viewBox="0 0 100 50" fill="currentColor">
+           <path d="M10 30 Q 30 5 50 30 T 90 30 Q 100 45 80 45 H 20 Q 0 45 10 30 Z" />
+        </svg>
+        <svg class="absolute top-2/3 right-1/4 w-96 h-48 text-sky-200/60 animate-drift-delayed" viewBox="0 0 100 50" fill="currentColor">
            <path d="M10 30 Q 30 5 50 30 T 90 30 Q 100 45 80 45 H 20 Q 0 45 10 30 Z" />
         </svg>
 
         <!-- Montañas -->
-        <svg class="absolute bottom-0 left-0 w-full h-full text-stone-200/60" preserveAspectRatio="none" viewBox="0 0 1200 600" fill="currentColor">
+        <svg class="absolute bottom-0 left-0 w-full h-full text-[#556b2f]/50" preserveAspectRatio="none" viewBox="0 0 1200 600" fill="currentColor" filter="url(#noiseFilter)">
           <path d="M0 600 L0 300 Q 150 100 300 300 T 600 250 T 900 350 T 1200 200 V 600 Z" />
         </svg>
-        <svg class="absolute bottom-0 left-0 w-full h-2/3 text-stone-300/60" preserveAspectRatio="none" viewBox="0 0 1200 400" fill="currentColor">
+        <svg class="absolute bottom-0 left-0 w-full h-2/3 text-[#3b4d1f]/50" preserveAspectRatio="none" viewBox="0 0 1200 400" fill="currentColor" filter="url(#noiseFilter)">
           <path d="M0 400 L0 200 Q 200 50 400 200 T 800 150 T 1200 250 V 400 Z" />
         </svg>
 
         <!-- Rio -->
-        <svg class="absolute bottom-0 w-full h-1/3 text-blue-200/20" preserveAspectRatio="none" viewBox="0 0 1200 200" fill="none" stroke="currentColor" stroke-width="40" stroke-linecap="round">
+        <svg class="absolute bottom-0 w-full h-1/3 text-[#5f9ea0]/40" preserveAspectRatio="none" viewBox="0 0 1200 200" fill="none" stroke="currentColor" stroke-width="40" stroke-linecap="round">
            <path d="M-100 200 Q 300 0 600 100 T 1300 50" />
         </svg>
       </div>
 
       <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div class="flex justify-center mb-2 animate-fade-in-up delay-100">
-          <img :src="titulo" alt="Nina Pampa" class="h-56 md:h-96 object-contain" fetchpriority="high" />
+          <img :src="titulo" alt="Nina Pampa" class="w-full max-w-lg md:max-w-2xl h-auto object-contain drop-shadow-xl pt-0 -mt-2 md:mt-0" fetchpriority="high" />
         </div>
-        <p class="text-xl md:text-2xl text-stone-900 mb-10 font-medium max-w-2xl mx-auto animate-fade-in-up delay-200">
-          Inciensos artesanales creados con la energía mística del Valle Sagrado de Urubamba, Cusco. 
-          Conecta con la naturaleza a través del fuego sagrado de Nina Pampa.
-        </p>
-        <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up delay-300 max-w-3xl mx-auto">
-          <button @click="scrollToProducts" class="px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white rounded-full font-cinzel font-bold transition-all hover:scale-105 shadow-xl hover:shadow-orange-900/20">
+        <div class="flex flex-wrap gap-3 md:gap-4 justify-center animate-fade-in-up delay-200 max-w-3xl mx-auto mb-4 md:mb-6">
+          <button @click="scrollToProducts" class="px-6 py-3 md:px-8 md:py-4 bg-orange-600 hover:bg-orange-700 text-white rounded-full font-raleway font-semibold transition-all hover:scale-105 shadow-xl hover:shadow-orange-900/20 text-sm md:text-base">
             Descubrir Aromas
           </button>
-          <button @click="scrollToEssence" class="px-8 py-4 bg-transparent hover:bg-stone-100 text-stone-700 border border-stone-300 rounded-full font-cinzel font-bold transition-all hover:scale-105">
+          <button @click="scrollToEssence" class="px-6 py-3 md:px-8 md:py-4 bg-transparent hover:bg-stone-100 text-stone-700 border border-stone-300 rounded-full font-raleway font-semibold transition-all hover:scale-105 text-sm md:text-base">
             Nuestra Historia
           </button>
-          <button @click="scrollToPromos" class="px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full font-cinzel font-bold transition-all hover:scale-105 shadow-xl hover:shadow-emerald-900/20">
+          <button @click="scrollToPromos" class="px-6 py-3 md:px-8 md:py-4 bg-emerald-700 hover:bg-emerald-800 text-white rounded-full font-raleway font-semibold transition-all hover:scale-105 shadow-xl hover:shadow-emerald-900/20 text-sm md:text-base">
             Promociones
           </button>
-          <button @click="scrollToMerch" class="px-8 py-4 bg-stone-800 hover:bg-stone-900 text-white rounded-full font-cinzel font-bold transition-all hover:scale-105 shadow-xl hover:shadow-stone-900/20">
+          <button @click="scrollToMerch" class="px-6 py-3 md:px-8 md:py-4 bg-stone-800 hover:bg-stone-900 text-white rounded-full font-raleway font-semibold transition-all hover:scale-105 shadow-xl hover:shadow-stone-900/20 text-sm md:text-base">
             Merchandising
           </button>
         </div>
-      </div>
-
-      <!-- Elemento decorativo místico -->
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce-slow text-stone-400">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        <div class="flex justify-center mb-6 animate-fade-in-up delay-300">
+          <button @click="scrollToBenefits" class="animate-bounce-slow text-stone-400 hover:text-orange-700 transition-colors cursor-pointer" aria-label="Descubrir más">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+          </button>
+        </div>
+        <p class="text-xl md:text-2xl text-stone-900 mb-6 md:mb-8 font-medium max-w-2xl mx-auto animate-fade-in-up delay-300">
+          Inciensos artesanales creados con la energía mística del Valle Sagrado de Urubamba, Cusco. 
+          Conecta con la naturaleza a través del fuego sagrado de Nina Pampa.
+        </p>
       </div>
 
       <!-- Animación de Incienso Flotante (Móvil - Detrás del título) -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-stone-400 animate-float lg:hidden pointer-events-none z-0 opacity-40">
-        <svg width="220" height="352" viewBox="0 0 100 160" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Animación de Incienso Flotante (Izquierda 1) -->
+      <div class="absolute top-24 left-10 xl:left-32 text-stone-400/70 animate-float hidden lg:block pointer-events-none z-0">
+        <svg width="200" height="320" viewBox="0 0 100 160" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
           <!-- Humo (Estelas animadas) -->
           <path class="animate-smoke-1 opacity-0" d="M50 60 Q 55 50 50 40 T 50 10" />
           <path class="animate-smoke-2 opacity-0" d="M42 55 Q 38 45 42 30 T 40 5" />
           <path class="animate-smoke-3 opacity-0" d="M58 55 Q 62 45 58 35 T 60 10" />
-          
+         
           <!-- Varillas -->
           <path d="M50 80 L 50 60" />
           <path d="M50 80 L 42 55" />
@@ -348,12 +371,10 @@ onUnmounted(() => {
           <!-- Humo (Estelas animadas) -->
           <path class="animate-smoke-1 opacity-0" d="M50 60 Q 55 50 50 40 T 50 10" />
           <path class="animate-smoke-2 opacity-0" d="M42 55 Q 38 45 42 30 T 40 5" />
-          <path class="animate-smoke-3 opacity-0" d="M58 55 Q 62 45 58 35 T 60 10" />
           
           <!-- Varillas -->
           <path d="M50 80 L 50 60" />
           <path d="M50 80 L 42 55" />
-          <path d="M50 80 L 58 55" />
           
           <!-- Cuenco -->
           <path d="M30 80 Q 50 100 70 80" />
@@ -362,8 +383,8 @@ onUnmounted(() => {
         </svg>
       </div>
 
-      <!-- Animación de Incienso Flotante (Derecha) -->
-      <div class="absolute top-1/2 -translate-y-1/2 right-10 xl:right-32 text-stone-400 animate-float hidden lg:block pointer-events-none z-0 opacity-60 scale-x-[-1]">
+      <!-- Animación de Incienso Flotante (Izquierda 2) -->
+      <div class="absolute top-1/3 -translate-y-1/2 left-60 xl:left-96 text-stone-400 animate-float hidden lg:block pointer-events-none z-0 opacity-60 scale-x-[-1]">
         <svg width="200" height="320" viewBox="0 0 100 160" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
           <!-- Humo (Estelas animadas) -->
           <path class="animate-smoke-1 opacity-0" d="M50 60 Q 55 50 50 40 T 50 10" />
@@ -384,7 +405,7 @@ onUnmounted(() => {
     </header>
 
     <!-- Sección de Beneficios -->
-    <section class="py-20 bg-[#fdfbf7] relative z-10">
+    <section id="beneficios" class="py-20 bg-[#fdfbf7] relative z-10">
       <div class="container mx-auto px-6">
         <div class="grid md:grid-cols-3 gap-12">
           <div v-for="benefit in benefits" :key="benefit.id" class="flex flex-col items-center text-center group">
@@ -396,7 +417,7 @@ onUnmounted(() => {
                <!-- Icono -->
                <svg class="w-10 h-10 text-orange-800 relative z-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" v-html="benefit.icon"></svg>
             </div>
-            <h3 class="text-xl font-cinzel font-bold text-stone-800 mb-3">{{ benefit.title }}</h3>
+            <h3 class="text-xl font-raleway font-bold text-stone-900 mb-3">{{ benefit.title }}</h3>
             <p class="text-stone-800 font-medium leading-relaxed">{{ benefit.description }}</p>
           </div>
         </div>
@@ -425,8 +446,8 @@ onUnmounted(() => {
           </div>
           
           <div>
-            <h2 class="text-orange-700 font-cinzel font-bold tracking-widest text-sm mb-2 uppercase">Nuestra Historia</h2>
-            <h3 class="text-4xl font-cinzel font-bold text-stone-900 mb-6">Nacidos bajo el sol de Cusco</h3>
+            <h2 class="text-orange-700 font-raleway font-bold tracking-widest text-sm mb-2 uppercase">Nuestra Historia</h2>
+            <h3 class="text-4xl font-raleway font-bold text-stone-950 mb-6">Nacidos bajo el sol de Cusco</h3>
             <p class="text-stone-800 font-medium text-xl leading-relaxed mb-6">
               En el corazón del <strong>Valle de Urubamba</strong>, donde las montañas tocan el cielo, nace 
               <span class="text-orange-700 font-semibold">Nina Pampa</span>. Somos un emprendimiento dedicado a preservar 
@@ -463,7 +484,7 @@ onUnmounted(() => {
     <section id="productos" class="py-24 bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-cinzel font-bold text-stone-900 mb-4">Nuestros Aromas</h2>
+          <h2 class="text-4xl font-raleway font-bold text-stone-950 mb-4">Nuestros Aromas</h2>
           <p class="text-stone-700 font-medium">Cada aroma tiene un propósito. Encuentra el que tu alma necesita hoy.</p>
         </div>
 
@@ -477,11 +498,11 @@ onUnmounted(() => {
               {{ product.icon }}
             </div>
             
-            <div :class="`inline-block px-4 py-1 rounded-sm text-xs font-cinzel font-bold mb-4 border-dashed border-2 shadow-sm bg-noise ${product.color}`">
+            <div :class="`inline-block px-4 py-1 rounded-sm text-xs font-raleway font-bold mb-4 border-dashed border-2 shadow-sm bg-noise ${product.color}`">
               {{ product.benefit }}
             </div>
             
-            <h3 class="text-2xl font-cinzel font-bold text-stone-800 mb-3 group-hover:text-orange-700 transition-colors">
+            <h3 class="text-2xl font-raleway font-bold text-stone-900 mb-3 group-hover:text-orange-700 transition-colors">
               {{ product.name }}
             </h3>
             
@@ -501,17 +522,17 @@ onUnmounted(() => {
     <section id="promociones" class="py-24 bg-orange-50">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-cinzel font-bold text-stone-900 mb-4">Promociones Especiales</h2>
+          <h2 class="text-4xl font-raleway font-bold text-stone-950 mb-4">Promociones Especiales</h2>
           <p class="text-stone-700 font-medium">Regalos pensados para complementar tu ritual.</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div v-for="promo in promotions" :key="promo.id" class="bg-white p-8 rounded-lg shadow-lg border-2 border-orange-200 relative overflow-hidden group hover:border-orange-400 transition-colors">
-            <div class="absolute top-0 right-0 bg-orange-600 text-white px-4 py-1 rounded-bl-lg font-cinzel font-bold text-sm">Oferta</div>
+            <div class="absolute top-0 right-0 bg-orange-600 text-white px-4 py-1 rounded-bl-lg font-raleway font-bold text-sm">Oferta</div>
             <div class="flex items-center gap-6 mb-4">
               <div class="text-5xl group-hover:scale-110 transition-transform duration-300">{{ promo.icon }}</div>
               <div>
-                <h3 class="text-2xl font-cinzel font-bold text-stone-800">{{ promo.title }}</h3>
+                <h3 class="text-2xl font-raleway font-bold text-stone-900">{{ promo.title }}</h3>
                 <p class="text-orange-700 font-bold text-sm uppercase tracking-wider">{{ promo.condition }}</p>
               </div>
             </div>
@@ -528,7 +549,7 @@ onUnmounted(() => {
     <section id="merchandising" class="py-24 bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-cinzel font-bold text-stone-900 mb-4">Merchandising</h2>
+          <h2 class="text-4xl font-raleway font-bold text-stone-950 mb-4">Merchandising</h2>
           <p class="text-stone-700 font-medium">Lleva la esencia de Nina Pampa contigo.</p>
         </div>
 
@@ -539,7 +560,7 @@ onUnmounted(() => {
               <div v-else class="text-8xl opacity-80 group-hover:scale-110 transition-transform duration-500">{{ item.icon }}</div>
               <div class="absolute bottom-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-stone-800 shadow-sm">{{ item.price }}</div>
             </div>
-            <h3 class="text-xl font-cinzel font-bold text-stone-800 mb-2">{{ item.name }}</h3>
+            <h3 class="text-xl font-raleway font-bold text-stone-900 mb-2">{{ item.name }}</h3>
             <p class="text-stone-600 text-sm px-4">{{ item.description }}</p>
           </div>
         </div>
@@ -550,19 +571,19 @@ onUnmounted(() => {
     <section id="puntos-venta" class="py-24 bg-[#fdfbf7]">
       <div class="container mx-auto px-6">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <h2 class="text-4xl font-cinzel font-bold text-stone-900 mb-4">Puntos de Venta</h2>
+          <h2 class="text-4xl font-raleway font-bold text-stone-950 mb-4">Puntos de Venta</h2>
           <p class="text-stone-700 font-medium">Encuentra nuestros inciensos en los siguientes lugares del Valle Sagrado.</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div class="bg-white p-8 rounded-lg shadow-md border-l-4 border-orange-700 hover:shadow-xl transition-shadow duration-300">
-            <h3 class="text-2xl font-cinzel font-bold text-stone-800 mb-2">Mercado de Urubamba</h3>
+            <h3 class="text-2xl font-raleway font-bold text-stone-900 mb-2">Mercado de Urubamba</h3>
             <p class="text-stone-600 font-medium">Puesto 45, Sección Artesanías</p>
             <p class="text-stone-500 text-sm mt-2">Lunes a Domingo, 8am - 5pm</p>
           </div>
 
           <div class="bg-white p-8 rounded-lg shadow-md border-l-4 border-orange-700 hover:shadow-xl transition-shadow duration-300">
-            <h3 class="text-2xl font-cinzel font-bold text-stone-800 mb-2">Feria de Pisac</h3>
+            <h3 class="text-2xl font-raleway font-bold text-stone-900 mb-2">Feria de Pisac</h3>
             <p class="text-stone-600 font-medium">Plaza de Armas</p>
             <p class="text-stone-500 text-sm mt-2">Domingos, 9am - 4pm</p>
           </div>
@@ -574,7 +595,7 @@ onUnmounted(() => {
     <section class="py-24 bg-white">
       <div class="container max-w-3xl mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-cinzel font-bold text-stone-900 mb-4">Preguntas Frecuentes</h2>
+          <h2 class="text-4xl font-raleway font-bold text-stone-950 mb-4">Preguntas Frecuentes</h2>
           <p class="text-stone-700 font-medium">Resolvemos tus dudas sobre nuestros productos artesanales.</p>
         </div>
 
@@ -588,7 +609,7 @@ onUnmounted(() => {
               @click="toggleFaq(index)"
               class="w-full flex items-center justify-between p-6 text-left bg-[#fdfbf7] hover:bg-orange-50 transition-colors"
             >
-              <span class="font-cinzel font-bold text-stone-800 text-lg">{{ faq.question }}</span>
+              <span class="font-raleway font-bold text-stone-900 text-lg">{{ faq.question }}</span>
               <span class="text-orange-700 text-2xl transition-transform duration-300" :class="{'rotate-180': activeFaq === index}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
               </span>
@@ -615,22 +636,22 @@ onUnmounted(() => {
           <div class="text-center md:text-left">
             <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
               <img :src="logo" alt="Logo Nina Pampa" class="w-20 h-20 object-contain" loading="lazy" decoding="async" />
-              <img :src="titulo" alt="Nina Pampa" class="h-20 object-contain" loading="lazy" decoding="async" />
+              <!--img :src="titulo" alt="Nina Pampa" class="h-20 object-contain" loading="lazy" decoding="async" /-->
             </div>
             <p>Valle de Urubamba, Cusco - Perú.</p>
           </div>
           <div class="flex gap-6">
             <a href="#" class="group relative hover:text-orange-500 transition-colors" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-stone-700 text-xs font-cinzel px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-stone-200 shadow-lg">Instagram</span>
+              <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-stone-700 text-xs font-raleway px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-stone-200 shadow-lg">Instagram</span>
             </a>
             <a href="#" class="group relative hover:text-orange-500 transition-colors" aria-label="Facebook">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-stone-700 text-xs font-cinzel px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-stone-200 shadow-lg">Facebook</span>
+              <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-stone-700 text-xs font-raleway px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-stone-200 shadow-lg">Facebook</span>
             </a>
             <a :href="`https://wa.me/${whatsappNumber}`" target="_blank" class="group relative hover:text-orange-500 transition-colors" aria-label="WhatsApp">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-stone-700 text-xs font-cinzel px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-stone-200 shadow-lg">WhatsApp</span>
+              <span class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-stone-700 text-xs font-raleway px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap border border-stone-200 shadow-lg">WhatsApp</span>
             </a>
           </div>
         </div>
@@ -649,20 +670,20 @@ onUnmounted(() => {
           
           <div class="text-center mb-6">
               <div class="text-6xl mb-4 animate-bounce-slow">{{ selectedProduct.icon }}</div>
-              <h3 class="text-3xl font-cinzel font-bold text-stone-900">{{ selectedProduct.name }}</h3>
-              <p class="text-orange-700 font-cinzel font-bold mt-2 tracking-wide">{{ selectedProduct.benefit }}</p>
+              <h3 class="text-3xl font-raleway font-bold text-stone-950">{{ selectedProduct.name }}</h3>
+              <p class="text-orange-700 font-raleway font-bold mt-2 tracking-wide">{{ selectedProduct.benefit }}</p>
           </div>
           
           <div class="space-y-6 text-stone-700 font-medium">
               <p class="italic text-center text-lg">{{ selectedProduct.details.intro }}</p>
               
               <div class="bg-orange-50/50 p-4 rounded border border-orange-100/50">
-                  <h4 class="font-cinzel font-bold text-orange-900 mb-1 text-lg">{{ selectedProduct.details.comp1_title }}</h4>
+                  <h4 class="font-raleway font-bold text-orange-900 mb-1 text-lg">{{ selectedProduct.details.comp1_title }}</h4>
                   <p class="text-sm leading-relaxed">{{ selectedProduct.details.comp1_desc }}</p>
               </div>
               
               <div class="bg-stone-100/50 p-4 rounded border border-stone-200/50">
-                  <h4 class="font-cinzel font-bold text-stone-800 mb-1 text-lg">{{ selectedProduct.details.comp2_title }}</h4>
+                  <h4 class="font-raleway font-bold text-stone-900 mb-1 text-lg">{{ selectedProduct.details.comp2_title }}</h4>
                   <p class="text-sm leading-relaxed">{{ selectedProduct.details.comp2_desc }}</p>
               </div>
           </div>
@@ -702,7 +723,18 @@ onUnmounted(() => {
 }
 
 .animate-bounce-slow {
-  animation: bounce 3s infinite;
+  animation: bounce-slow 3s infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 
 .animate-pulse-slow {
