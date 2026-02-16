@@ -316,10 +316,19 @@ onUnmounted(() => {
       </div>
 
       <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <div class="flex justify-center mb-2 animate-fade-in-up delay-100">
-          <img :src="titulo" alt="Nina Pampa" class="w-full max-w-lg md:max-w-2xl h-auto object-contain drop-shadow-xl pt-0 -mt-2 md:mt-0" fetchpriority="high" />
+        <div class="flex justify-center mb-36 md:mb-2 animate-fade-in-up delay-100">
+          <img :src="titulo" alt="Nina Pampa" class="w-full max-w-lg md:max-w-2xl h-auto object-contain drop-shadow-xl pt-24 md:pt-0 -mt-2 md:mt-0 scale-150 md:scale-100 origin-top" fetchpriority="high" />
         </div>
-        <div class="flex flex-wrap gap-3 md:gap-4 justify-center animate-fade-in-up delay-200 max-w-3xl mx-auto mb-4 md:mb-6">
+        <p class="text-xl md:text-2xl text-stone-900 mb-12 md:mb-8 font-medium max-w-2xl mx-auto animate-fade-in-up delay-200">
+          Inciensos artesanales creados con la energía mística del Valle Sagrado de Urubamba, Cusco. 
+          Conecta con la naturaleza a través del fuego sagrado de Nina Pampa.
+        </p>
+        <div class="flex justify-center mb-6 md:hidden animate-fade-in-up delay-500">
+          <button @click="scrollToBenefits" class="animate-bounce-slow text-stone-400 hover:text-orange-700 transition-colors cursor-pointer" aria-label="Descubrir más">
+             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+          </button>
+        </div>
+        <div class="grid grid-cols-2 md:flex md:flex-wrap gap-3 md:gap-4 justify-center animate-fade-in-up delay-300 max-w-3xl mx-auto mb-6 md:mb-8">
           <button @click="scrollToProducts" class="px-6 py-3 md:px-8 md:py-4 bg-orange-600 hover:bg-orange-700 text-white rounded-full font-raleway font-semibold transition-all hover:scale-105 shadow-xl hover:shadow-orange-900/20 text-sm md:text-base">
             Descubrir Aromas
           </button>
@@ -333,15 +342,11 @@ onUnmounted(() => {
             Merchandising
           </button>
         </div>
-        <div class="flex justify-center mb-6 animate-fade-in-up delay-300">
+        <div class="flex justify-center mb-6 animate-fade-in-up delay-500">
           <button @click="scrollToBenefits" class="animate-bounce-slow text-stone-400 hover:text-orange-700 transition-colors cursor-pointer" aria-label="Descubrir más">
              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
           </button>
         </div>
-        <p class="text-xl md:text-2xl text-stone-900 mb-6 md:mb-8 font-medium max-w-2xl mx-auto animate-fade-in-up delay-300">
-          Inciensos artesanales creados con la energía mística del Valle Sagrado de Urubamba, Cusco. 
-          Conecta con la naturaleza a través del fuego sagrado de Nina Pampa.
-        </p>
       </div>
 
       <!-- Animación de Incienso Flotante (Móvil - Detrás del título) -->
